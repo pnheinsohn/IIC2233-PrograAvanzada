@@ -1,0 +1,9 @@
+{   "Rut": "string",
+    "Nombre": "string",
+    "Apellido": "string",
+    "Fecha Nacimiento": "string",
+    "Numero cuenta": "integer",
+    "Tipo cuenta": "string",
+    "Clave": "integer",
+    "Balance": "integer"                 
+}

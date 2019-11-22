@@ -1,0 +1,214 @@
+from abc import ABCMeta, abstractmethod
+import datetime
+
+
+class Persona:
+
+    def __init__(self, name, birth_date):
+        self.name = name
+        self._birth_date = birth_date
+
+    def get_age(self):
+        fecha = self._birth_date.split("-")
+        year = int(datetime.datetime.now().strftime("%Y")) - int(fecha[2])
+        month = int(datetime.datetime.now().strftime("%m"))
+        day = int(datetime.datetime.now().strftime("%d"))
+        if month < int(fecha[1]) or (month == int(fecha[1]) and day > int(fecha[0])):
+            year -= 1
+        return year
+
+    def saludar(self):
+        if type(self) == Cliente:
+            print("Hola buen dia buen trabajador!")
+        if type(self) == Cajero:
+            print("Hola hermoso caballero, tenga una linda compra")
+
+
+class Cliente(Persona):
+
+    def __init__(self, name, birth_date, money, frequent, tipo=""):
+        self._money = money
+        self.carro = []
+        self.tipo = tipo
+        self.frequent = frequent
+        super().__init__(name, birth_date)
+
+    def get_product_info(self, product, gr=100):
+        if isinstance(product, Comida):
+            calories = self.calcular(product.calories, gr)
+            proteins = self.calcular(product.proteins, gr)
+            carbs = self.calcular(product.carbs, gr)
+            fat = self.calcular(product.fat, gr)
+            exp = product.expiration_date
+            print("Calorias: {0} (kcal)\nProteínas: {1} (g)"
+                  "\nCarbohidratos: {2} (g)"
+                  "\nGrasa: {3} (g)"
+                  .format(calories, proteins, carbs, fat))
+            if isinstance(product, Lacteos):
+                other = self.calcular(product.calcium, gr)
+                print("Calcio: {} (mg)".format(other))
+            elif isinstance(product, Verdura):
+                other = self.calcular(product.vitamin, gr)
+                print("Vitamina C: {} (mg)".format(other))
+            print("Fecha de Vencimiento: {}".format(exp))
+        elif isinstance(product, Vestimenta):
+            talla = product.size
+            categoria = product.category
+            print("Talla: {0}\nCategoría: {1}".format(talla, categoria))
+        return
+
+    def calcular(self, x, gr):
+        return round((x * gr) / 100, 2)
+
+    def add_product(self, product):
+        if self.tipo.lower() == "vegetariano" and not isinstance(product, Carne):
+            self.carro.append(product)
+        elif self.tipo.lower() == "vegano" and not (isinstance(product, Carne) or isinstance(product, Lacteos)):
+            self.carro.append(product)
+        else:
+            print("Cliente no puede agregar el producto al carro")
+        return
+
+
+class Cajero(Persona):
+
+    def __init__(self, name, birth_date):
+        super().__init__(name, birth_date)
+
+    def recibir_carro(self, persona):
+        precio_total = 0
+        ropa = []
+        comida = []
+        for product in persona.carro:
+            if isinstance(product, Vestimenta):
+                ropa.append(product)
+            elif isinstance(product, Comida):
+                comida.append(product)
+        if persona.frequent:
+            for product in ropa:
+                precio_total += 0.9*product.price
+            for product in comida:
+                precio_total += 0.85*product.price
+        elif persona.get_age() >= 60:
+            for product in persona.carro:
+                precio_total += 0.9*product.price
+        else:
+            for product in persona.carro:
+                precio_total += product.price
+
+        if persona._money < precio_total:
+            print("Usuario no tiene dinero suficiente")
+        else:
+            persona.carro = []
+            persona._money -= precio_total
+            print("Compra realizada")
+
+
+class Producto(metaclass=ABCMeta):
+
+    sku = 0
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+        self.sku = Producto.sku
+        Producto.sku += 1
+
+    def __str__(self):
+        return "[{0}] {1} $ {2}.".format(self.sku, self.name, self.price)
+
+
+class Comida(Producto):
+
+    def __init__(self, name, price, calories, proteins, carbs, fat, expiration_date):
+        super().__init__(name, price)
+        self.calories = calories
+        self.proteins = proteins
+        self.carbs = carbs
+        self.fat = fat
+        self.expiration_date = expiration_date
+
+    def __str__(self):
+        print("\n" + super().__str__())
+        string = ""
+        string += "Calorias: {} (kcal)".format(self.calories)
+        string += "\nProteínas: {} (g)".format(self.proteins)
+        string += "\nCarbohidratos: {} (g)".format(self.carbs)
+        string += "\nGrasa: {} (g)".format(self.fat)
+        if type(self) == type(Lacteos):
+            other = self.calcium
+            string += "Calcio: {} (mg)".format(other)
+        elif type(self) == type(Verdura):
+            other = self.vitamin
+            string += "\nVitamina C: {} (mg)".format(other)
+        string += "\nFecha de Vencimiento: {}".format(self.expiration_date)
+        return string
+
+
+
+class Lacteos(Comida):
+
+    def __init__(self, name, price, calcium, calories, proteins, carbs, fat, expiration_date):
+        self.calcium = calcium
+        super().__init__(name, price, calories, proteins, carbs, fat, expiration_date)
+
+
+class Verdura(Comida):
+    def __init__(self, name, price, vitamin, calories, proteins, carbs, fat, expiration_date):
+        self.vitamin = vitamin
+        super().__init__(name, price, calories, proteins, carbs, fat, expiration_date)
+
+
+class Carne(Comida):
+
+    def __init__(self, name, price, tipo, calories, proteins, carbs, fat, expiration_date):
+        self.tipo = tipo
+        super().__init__(name, price, calories, proteins, carbs, fat, expiration_date)
+
+
+class Pescado(Carne):
+
+    def __init__(self, name, price, calories, proteins, carbs, fat, expiration_date):
+        super().__init__(name, price, self, calories, proteins, carbs, fat, expiration_date)
+
+
+class Vacuno(Carne):
+    def __init__(self, name, price, calories, proteins, carbs, fat, expiration_date):
+        super().__init__(name, price, self, calories, proteins, carbs, fat, expiration_date)
+
+
+class Pollo(Carne):
+    def __init__(self, name, price, calories, proteins, carbs, fat, expiration_date):
+        super().__init__(name, price, self, calories, proteins, carbs, fat, expiration_date)
+
+
+class Cerdo(Carne):
+    def __init__(self, name, price, calories, proteins, carbs, fat, expiration_date):
+        super().__init__(name, price, self, calories, proteins, carbs, fat, expiration_date)
+
+
+class Vestimenta(Producto):
+
+    def __init__(self, name, price, size, category):
+        self.size = size
+        self.category = category
+        super().__init__(name, price)
+
+
+client = Cliente("James", "16-08-1996", 1000, True, "vegano")
+client1 = Cliente("Jose", "16-09-1950", 10000, False)
+client2 = Cliente("Paul", "05-11-1996", 0, True, "vegetariano")
+cajero = Cajero("Jordan", "01-01-2000")
+leche = Lacteos("Leche", 666, 5, 11, 100, 33, 22, "12-11-2020")
+carne = Pescado("fish", 3000, 70, 200, 200, 150, "12-10-2017")
+comida = Comida("fish&Chips", 5000, 90, 200, 700, 300, "12-10-2017")
+a = Vestimenta("Pantalones", 30000, "XXL", "F")
+b = Vestimenta("Pantalones con caca", 300000, "S", "M")
+c = Vestimenta("Pantalon 3", 30000, "L", "F")
+pickle_rick = Verdura("Pickle", 300, 3, 25, 20, 10, 0, "12-12-2018")
+client.add_product(pickle_rick)
+client.add_product(carne)
+client2.add_product(pickle_rick)
+cajero.recibir_carro(client)
+cajero.recibir_carro(client2)
+print("age: " + str(client.get_age()), pickle_rick)

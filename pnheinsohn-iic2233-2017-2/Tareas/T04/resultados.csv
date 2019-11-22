@@ -1,0 +1,7 @@
+name;min_prod;min_amount;max_prod;max_amount;prom_prod;stereo_times;temperature_times;burger_rain_times;prom_ppl1;prom_ppl2;prom_ppl3;month1;month2;month3;month4;quality;toxic;decompose;abandon_line;stockless
+Initial Paramerets;Maruchan;0;Carne Mongoliana;7;125;3;11;33;31;77;39;1098;631;1096;881;8.090861008453774e-06;38;1311;0.0;0.0
+Escenario N°3;Maruchan;0;Carne Mongoliana;7;125;15;18;17;40;70;67;1286;1275;1247;1368;8.645424753072927e-06;38;1371;0.0;0.0
+Escenario N°3;Maruchan;0;Carne Mongoliana;7;125;14;14;27;35;60;58;724;1260;1146;1267;1.168324849308518e-05;38;1461;0.0;0.0
+Escenario N°4;Maruchan;0;Carne Mongoliana;7;125;8;8;26;25;68;50;1323;1195;1397;1241;3.4784031511218915e-06;38;1581;0.0;0.0
+Escenario N°4;Maruchan;0;Carne Mongoliana;7;125;7;13;21;26;75;51;1342;1259;1522;1316;1.6956167919573362e-05;38;1731;0.0;0.0
+Escenario N°4;Maruchan;0;Carne Mongoliana;7;125;7;11;26;25;70;50;1294;1471;997;1333;4.57035467527788e-06;38;1911;0.0;0.0

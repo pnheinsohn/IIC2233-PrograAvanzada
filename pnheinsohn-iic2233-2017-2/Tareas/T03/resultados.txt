@@ -1,0 +1,79 @@
+Número de veces guardado 1:
+--------------------------------------------------
+----------- Set de Consultas N°1 ------------
+--------------------------------------------------
+
+---------------- Consulta N°1 ----------------
+No hay personas totalmente iguales a Hernán Valdivieso
+---------------- Consulta N°2 ----------------
+Parientes grado 1 de Tomas Salvadores:
+Emilio Gabriele
+---------------- Consulta N°3 ----------------
+No hay parientes de grado 1 de Lucas Valenzuela
+---------------- Consulta N°4 ----------------
+Parientes grado 2 de Jesús De Nazaret:
+El Chuña,
+Sterling Archer,
+fringles inthestreet,
+Ivania Donoso,
+Florencia Barrios,
+Luis Leiva,
+Felipe Pezoa
+---------------- Consulta N°5 ----------------
+Parientes grado 2 de Florencia Barrios:
+Jesús De Nazaret,
+El Chuña,
+Sterling Archer,
+fringles inthestreet,
+Ivania Donoso,
+Octavio Vera,
+Gabriel Lyon,
+Gustavo Prudencio,
+Germán Contreras,
+Luis Leiva,
+Felipe Pezoa
+---------------- Consulta N°6 ----------------
+Parientes grado n de Rick Sánchez:
+Hakalamax Atalapastruka,
+Henry Boys,
+El Chuña,
+Sterling Archer,
+fringles inthestreet,
+Ivania Donoso,
+Florencia Barrios,
+Octavio Vera,
+Gabriel Lyon,
+Isaac Carrera,
+Gustavo Prudencio,
+Germán Contreras,
+Jurgen Heysen,
+Luis Leiva,
+Felipe Pezoa
+---------------- Consulta N°7 ----------------
+Ascendencia no encontrada
+---------------- Consulta N°8 ----------------
+Ascendencias de Ivania Donoso:
+Albina
+---------------- Consulta N°9 ----------------
+Ascendencias de Hans Lobel:
+Albina
+---------------- Consulta N°10 ----------------
+Gemelo genético de Hernán Valdivieso:
+Sebastian Cruz
+---------------- Consulta N°11 ----------------
+Gemelo genético de Nebil Kawas:
+El Chuña
+---------------- Consulta N°12 ----------------
+Valor de la característica TCT de Stephanie Chau:
+Blanco
+---------------- Consulta N°13 ----------------
+Valor de la característica TAG de El Chuña:
+Daltonismo, Miopia
+---------------- Consulta N°14 ----------------
+Valor de la característica TGG de Bastián Mavrakis:
+Atleta
+---------------- Consulta N°15 ----------------
+Valor de la característica TAG de Fernando Florenzano:
+Daltonismo, Miopia
+
+
