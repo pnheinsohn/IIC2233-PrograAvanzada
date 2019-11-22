@@ -1,6 +1,6 @@
 # [IIC2233] Programación Avanzada del DCC [PUC]
 ## Años (Semestres)
-Alumno: 2do semestre 2017
+Alumno: 2do semestre 2017 <br>
 Ayudante: 2do semestre 2018
 
 ## Objetivo
