@@ -1,4 +1,6 @@
-# Contenidos
+# Contenidos Progra Av. 2018-2
+### Aclaración
+No es código mio, es el entregado por el material docente del curso en ese semestre
 
 Los contenidos que debes estudiar en la *semana x* están en la carpeta *semana x*. Si tienes dudas sobre el contenido puedes abrir una issue [aquí](https://github.com/IIC2233/syllabus/issues).
 
