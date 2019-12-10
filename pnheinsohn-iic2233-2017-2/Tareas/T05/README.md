@@ -16,6 +16,10 @@
 
 ## To Consider
 
+- Run with "python .\FrontEnd.py"
+
+- Try not dying, because "play again option is bugged"
+ 
 - Collisions between enemies, character, bombs or any type of objects are "trigger" type, so, you can overstep them. However, the borders are different.
 
 - Enemy sprites are not coordinated with their movement
